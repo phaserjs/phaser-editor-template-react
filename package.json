@@ -1,5 +1,5 @@
 {
-    "name": "template-react",
+    "name": "phaser-editor-template-react",
     "description": "A Phaser 3 project template that demonstrates React communication and uses Vite for bundling.",
     "version": "1.1.1",
     "type": "module",
