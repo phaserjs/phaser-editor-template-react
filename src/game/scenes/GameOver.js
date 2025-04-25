@@ -1,49 +1,24 @@
-/* START OF COMPILED CODE */
-
-import Phaser from "phaser";
-/* START-USER-IMPORTS */
 import { EventBus } from '../EventBus';
-/* END-USER-IMPORTS */
+import { Scene } from 'phaser';
 
-export default class GameOver extends Phaser.Scene {
-
-	constructor() {
-		super("GameOver");
-
-		/* START-USER-CTR-CODE */
-		// Write your code here.
-		/* END-USER-CTR-CODE */
-	}
-
-	/** @returns {void} */
-	editorCreate() {
-
-		// background
-		const background = this.add.image(512, 384, "background");
-		background.alpha = 0.5;
-		background.alphaTopLeft = 0.5;
-		background.alphaTopRight = 0.5;
-		background.alphaBottomLeft = 0.5;
-		background.alphaBottomRight = 0.5;
-
-		// textgameover
-		const textgameover = this.add.text(512, 384, "", {});
-		textgameover.setOrigin(0.5, 0.5);
-		textgameover.text = "Game Over";
-		textgameover.setStyle({ "align": "center", "color": "#ffffff", "fontFamily": "Arial Black", "fontSize": "64px", "stroke": "#000000", "strokeThickness":8});
-
-		this.events.emit("scene-awake");
-	}
-
-	/* START-USER-CODE */
-
-	// Write your code here
+export class GameOver extends Scene
+{
+    constructor ()
+    {
+        super('GameOver');
+    }
 
     create ()
     {
-        this.editorCreate();
-
         this.cameras.main.setBackgroundColor(0xff0000);
+
+        this.add.image(512, 384, 'background').setAlpha(0.5);
+
+        this.add.text(512, 384, 'Game Over', {
+            fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
+            stroke: '#000000', strokeThickness: 8,
+            align: 'center'
+        }).setOrigin(0.5).setDepth(100);
 
         EventBus.emit('current-scene-ready', this);
     }
@@ -52,9 +27,4 @@ export default class GameOver extends Phaser.Scene {
     {
         this.scene.start('MainMenu');
     }
-    /* END-USER-CODE */
 }
-
-/* END OF COMPILED CODE */
-
-// You can write more code here
