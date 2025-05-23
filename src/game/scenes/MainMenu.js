@@ -1,29 +1,55 @@
+/* START OF COMPILED CODE */
+
+import Phaser from "phaser";
+/* START-USER-IMPORTS */
 import { EventBus } from '../EventBus';
-import { Scene } from 'phaser';
+/* END-USER-IMPORTS */
 
-export class MainMenu extends Scene
-{
-    logoTween;
+export default class MainMenu extends Phaser.Scene {
 
-    constructor ()
-    {
-        super('MainMenu');
-    }
+	constructor() {
+		super("MainMenu");
 
+		/* START-USER-CTR-CODE */
+		// Write your code here.
+		/* END-USER-CTR-CODE */
+	}
+
+	/** @returns {void} */
+	editorCreate() {
+
+		// background
+		this.add.image(512, 384, "background");
+
+		// logo
+		const logo = this.add.image(513, 384, "logo");
+
+		// text
+		const text = this.add.text(512, 460, "", {});
+		text.setOrigin(0.5, 0.5);
+		text.text = "Main Menu";
+		text.setStyle({ "align": "center", "color": "#ffffff", "fontFamily": "Arial Black", "fontSize": "38px", "stroke": "#000000", "strokeThickness":8});
+
+		this.logo = logo;
+
+		this.events.emit("scene-awake");
+	}
+
+	/** @type {Phaser.GameObjects.Image} */
+	logo;
+
+	/* START-USER-CODE */
+
+	// Write your code here
     create ()
     {
-        this.add.image(512, 384, 'background');
 
-        this.logo = this.add.image(512, 300, 'logo').setDepth(100);
+        this.editorCreate();
 
-        this.add.text(512, 460, 'Main Menu', {
-            fontFamily: 'Arial Black', fontSize: 38, color: '#ffffff',
-            stroke: '#000000', strokeThickness: 8,
-            align: 'center'
-        }).setDepth(100).setOrigin(0.5);
-        
         EventBus.emit('current-scene-ready', this);
+
     }
+
 
     changeScene ()
     {
@@ -35,6 +61,7 @@ export class MainMenu extends Scene
 
         this.scene.start('Game');
     }
+
 
     moveLogo (reactCallback)
     {
@@ -69,4 +96,10 @@ export class MainMenu extends Scene
             });
         }
     }
+
+        /* END-USER-CODE */
 }
+
+/* END OF COMPILED CODE */
+
+// You can write more code here
